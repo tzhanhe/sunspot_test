@@ -1,0 +1,33 @@
+<h1>Listing productions</h1>
+<%= form_tag search_productions_path, :method => :get do %>
+    <p>
+      <%= text_field_tag :query, params[:query] %> <%= submit_tag "Search!" %>
+    </p>
+<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @productions.each do |production| %>
+      <tr>
+        <td><%= production.name %></td>
+        <td><%= production.title %></td>
+        <td><%= production.content %></td>
+        <td><%= link_to 'Show', production %></td>
+        <td><%= link_to 'Edit', edit_production_path(production) %></td>
+        <td><%= link_to 'Destroy', production, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Production', new_production_path %>
